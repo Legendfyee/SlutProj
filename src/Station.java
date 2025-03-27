@@ -1,26 +1,34 @@
 import java.awt.*;
 
 public class Station {
+    private double x, y;
     private String name;
-    private int x, y;
 
-    public Station(String name, int x, int y) {
+    public Station(String name, double x, double y) {
         this.name = name;
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void draw(Graphics g) {
+        // Draw the station as a black square
         g.setColor(Color.BLACK);
-        g.fillRect(x - 10, y - 10, 20, 20);
-        
+        g.fillRect((int)x - 10, (int)y - 10, 20, 20);
+
+        // Draw the station name next to the square
+        g.setColor(Color.BLACK);
+        g.drawString(name, (int)x + 15, (int)y - 10);
     }
 }

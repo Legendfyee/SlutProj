@@ -11,36 +11,35 @@ public class TrainControlPanel extends JPanel {
 
     public TrainControlPanel(TrainPanel trainPanel) {
         this.trainPanel = trainPanel;
-        setLayout(new FlowLayout());
+        setLayout(new GridLayout(3, 1, 10, 10));
 
-        // Dropdown för att välja tåg
+        // Dropdown for selecting trains
         trainSelector = new JComboBox<>();
-        for (int i = 0; i < trainPanel.getTrains().size(); i++) {
-            trainSelector.addItem("Tåg " + (i + 1));
+        for (Train train : trainPanel.getTrains()) {
+            trainSelector.addItem(train.getName());
         }
+        add(trainSelector);
 
-        // Dropdown för att välja station
+        // Dropdown for selecting stations
         stationSelector = new JComboBox<>();
-        for (int i = 0; i < trainPanel.getStations().size(); i++) {
-            stationSelector.addItem("Station " + (i + 1));
+        for (Station station : trainPanel.getStations()) {
+            stationSelector.addItem(station.getName());
         }
+        add(stationSelector);
 
-        // Knapp för att uppdatera rutt
+        // Button to update the route
         updateRouteButton = new JButton("Uppdatera rutt");
         updateRouteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int trainIndex = trainSelector.getSelectedIndex();
                 int stationIndex = stationSelector.getSelectedIndex();
-                trainPanel.updateTrainRoute(trainIndex, stationIndex);
+
+                if (trainIndex >= 0 && stationIndex >= 0) {
+                    trainPanel.updateTrainRoute(trainIndex, stationIndex);
+                }
             }
         });
-        
-        // Lägg till komponenter i panelen
-        add(new JLabel("Välj tåg:"));
-        add(trainSelector);
-        add(new JLabel("Välj station:"));
-        add(stationSelector);
         add(updateRouteButton);
     }
 }
