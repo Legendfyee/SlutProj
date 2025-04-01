@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Train {
     private String name;
@@ -10,12 +12,12 @@ public class Train {
     private double speed = 2.0; // Speed per update
     private boolean waiting; // Whether the train is waiting at a station
     private long waitStartTime; // When the waiting started
-    private int waitDuration = 5000; // Wait duration in milliseconds (5 seconds)
+    private int waitDuration = 2000; // Wait duration in milliseconds (2 seconds)
 
     public Train(String name, List<Station> route, Station startStation) {
         this.name = name;
         this.route = route;
-        this.currentStationIndex = 0;
+        this.currentStationIndex = 1;
 
         // Start position at the initial station
         this.x = startStation.getX();
@@ -35,8 +37,8 @@ public class Train {
 
     public boolean isAtStation() {
         Station currentStation = route.get(currentStationIndex);
-        double dx = x - currentStation.getX();
-        double dy = y - currentStation.getY();
+        double dx = currentStation.getX();
+        double dy = currentStation.getY();
         double distance = Math.sqrt(dx * dx + dy * dy);
         return distance < speed; // Check if the train is close enough to the station
     }
@@ -71,9 +73,11 @@ public class Train {
             waiting = true; // Start waiting
             waitStartTime = System.currentTimeMillis(); // Record the wait start time
 
-            // Increment the current station index to point to the next station
-            currentStationIndex = (currentStationIndex + 1) % route.size();
+            System.out.println("Train " + name + " reached station " + route.get(currentStationIndex).getName());
 
+            // Increment the current station index to point to the next station
+            currentStationIndex = (currentStationIndex + 1) % route.size(); // Loop back to the first station if needed
+            System.out.println("Train " + name + " updated currentStationIndex to " + currentStationIndex);
             // Update the target to the next station
             updateTarget();
         } else {
@@ -101,5 +105,10 @@ public class Train {
         if (!route.contains(newStation)) {
             route.add(newStation);
         }
+    }
+
+    public void shuffleRoute(List<Station> stations) {
+        List<Station> route = new ArrayList<>(stations);
+        Collections.shuffle(route); // Shuffle the stations to create a random route
     }
 }

@@ -28,7 +28,7 @@ public class TrainControlPanel extends JPanel {
         add(stationSelector);
 
         // Button to update the route
-        updateRouteButton = new JButton("Uppdatera rutt");
+        updateRouteButton = new JButton("Update route");
         updateRouteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -14,15 +14,15 @@ public class SettingsPanel extends JPanel {
 
         setLayout(new GridLayout(3, 2, 10, 10));
 
-        add(new JLabel("Antal stationer (3-6):"));
+        add(new JLabel("Amount of Stations (3-6):"));
         stationSpinner = new JSpinner(new SpinnerNumberModel(4, 3, 6, 1));
         add(stationSpinner);
 
-        add(new JLabel("Antal tåg (1-16):"));
+        add(new JLabel("Amount of Trains(1-16):"));
         trainSpinner = new JSpinner(new SpinnerNumberModel(4, 1, 16, 1));
         add(trainSpinner);
 
-        JButton startButton = new JButton("Starta");
+        JButton startButton = new JButton("Start");
         startButton.addActionListener(e -> startSimulation());
         add(startButton);
     }

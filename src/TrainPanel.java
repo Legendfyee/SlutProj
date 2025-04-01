@@ -28,7 +28,7 @@ public class TrainPanel extends JPanel {
             List<Station> route = new ArrayList<>(stations); // Copy the list of stations
             Collections.shuffle(route); // Shuffle the order of stations
             Station startStation = route.get(0); // Each train starts at its first station
-            trains.add(new Train("Tåg " + (i + 1), route, startStation));
+            trains.add(new Train("Train " + (i + 1), route, startStation));
         }
 
         // Timer to update the simulation
