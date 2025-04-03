@@ -35,8 +35,8 @@ public class Train {
 
     public boolean isAtStation() {
         Station currentStation = route.get(currentStationIndex);
-        double dx = x - currentStation.getX();
-        double dy = y - currentStation.getY();
+        double dx = currentStation.getX();
+        double dy = currentStation.getY();
         double distance = Math.sqrt(dx * dx + dy * dy);
         return distance < speed; // Check if the train is close enough to the station
     }
