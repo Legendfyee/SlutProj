@@ -21,7 +21,7 @@ public class Main {
             // Show the SettingsPanel first
             cardLayout.show(mainPanel, "Settings");
 
-            frame.add(mainPanel);
+            frame.add(mainPanel); 
             frame.setSize(1000, 600); // Set a larger size for the simulation
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
